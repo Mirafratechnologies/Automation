@@ -1,0 +1,6 @@
+Status(0-pass/1-fail) Execution_Time Testcase
+0			 0.500		 LAN_showInterfaces.showInterfaces.showAllInterfaces.runTest
+0			 2.556		 LAN_Verifyeth0.verifyEth0.VerifyEth0.runTest
+1			 0.503		 LAN_AddStaticRoute.addStaticRoute.AddStaticRoute.runTest
+0			 0.695		 Sys_info.systemInfo.SystemInfo.runTest
+0			 2.554		 LAN_ListRoute.listRoutes.ListRoutes.runTest

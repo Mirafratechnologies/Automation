@@ -1,0 +1,193 @@
+runTest (LAN_showInterfaces.showInterfaces.showAllInterfaces) ... ok
+runTest (LAN_Verifyeth0.verifyEth0.VerifyEth0) ... ok
+runTest (LAN_AddStaticRoute.addStaticRoute.AddStaticRoute) ... FAIL
+runTest (Sys_info.systemInfo.SystemInfo) ... demo_tests
+eth0      Link encap:Ethernet  HWaddr B8:27:EB:70:0A:85  
+          inet addr:192.168.1.232  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::2bd6:8f5f:864c:d235/64 Scope:Link
+          inet6 addr: fe80::ba27:ebff:fe70:a85/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1999 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:374 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:152130 (148.5 KiB)  TX bytes:53510 (52.2 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:31 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:31 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1 
+          RX bytes:2240 (2.1 KiB)  TX bytes:2240 (2.1 KiB)
+
+wlan0     Link encap:Ethernet  HWaddr B8:27:EB:25:5F:D0  
+          inet addr:169.254.69.85  Bcast:169.254.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::4718:1f76:6f9d:f0cd/64 Scope:Link
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+
+LAN_showInterfaces.showInterfaces.showAllInterfaces.runTest: 0.500 0
+/home/penguin/UT/Mirafra_automation_framework/LAN_Verifyeth0/verifyEth0.sh
+ifconfig eth0
+
+eth0      Link encap:Ethernet  HWaddr B8:27:EB:70:0A:85  
+          inet addr:192.168.1.232  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::2bd6:8f5f:864c:d235/64 Scope:Link
+          inet6 addr: fe80::ba27:ebff:fe70:a85/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2015 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:391 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:153879 (150.2 KiB)  TX bytes:57734 (56.3 KiB)
+
+
+ping 192.168.1.1 -c 3
+
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: seq=0 ttl=64 time=0.879 ms
+64 bytes from 192.168.1.1: seq=1 ttl=64 time=1.023 ms
+64 bytes from 192.168.1.1: seq=2 ttl=64 time=3.616 ms
+
+--- 192.168.1.1 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.879/1.839/3.616 ms
+
+LAN_Verifyeth0.verifyEth0.VerifyEth0.runTest: 2.556 0
+route add -net 10.10.10.0 netmask 255.255.255.0 dev eth0
+
+LAN_AddStaticRoute.addStaticRoute.AddStaticRoute.runTest: 0.503 1
+uname -a
+
+Linux OpenWrt 4.4.7 #22 SMP Thu Sep 8 05:17:10 UTC 2016 armv7l GNU/Linux
+
+cat /proc/cpuinfo
+
+processor	: 0
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 38.40
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+Hardware	: BCM2709
+Revision	: a02082
+Serial		: 0000000094700a85
+
+cat /proc/meminfo
+
+MemTotal:         952132 kB
+MemFree:          926496 kB
+MemAvailable:     926192 kB
+Buffers:             624 kB
+Cached:             7064 kB
+SwapCacheok
+runTest (LAN_ListRoute.listRoutes.ListRoutes) ... ok
+
+======================================================================
+FAIL: runTest (LAN_AddStaticRoute.addStaticRoute.AddStaticRoute)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/penguin/UT/Mirafra_automation_framework/LAN_AddStaticRoute/addStaticRoute.py", line 42, in runTest
+    self.assertEqual(stdout.channel.recv_exit_status(), 0, "Command execution failed")
+AssertionError: Command execution failed
+
+----------------------------------------------------------------------
+Ran 5 tests in 7.011s
+
+FAILED (failures=1)
+d:            0 kB
+Active:             5292 kB
+Inactive:           3144 kB
+Active(anon):        772 kB
+Inactive(anon):       28 kB
+Active(file):       4520 kB
+Inactive(file):     3116 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:           784 kB
+Mapped:             1592 kB
+Shmem:                56 kB
+Slab:               6184 kB
+SReclaimable:       1496 kB
+SUnreclaim:         4688 kB
+KernelStack:         720 kB
+PageTables:          168 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      476064 kB
+Committed_AS:       2776 kB
+VmallocTotal:    1114112 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+CmaTotal:          16384 kB
+CmaFree:           11928 kB
+
+uptime
+
+ 11:59:21 up 24 min,  load average: 0.00, 0.01, 0.01
+
+Sys_info.systemInfo.SystemInfo.runTest: 0.695 0
+route -n
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.6     0.0.0.0         UG    202    0        0 eth0
+10.10.10.0      0.0.0.0         255.255.255.0   U     0      0        0 eth0
+169.254.0.0     0.0.0.0         255.255.0.0     U     303    0        0 wlan0
+192.168.1.0     0.0.0.0         255.255.255.0   U     202    0        0 eth0
+
+ping 192.168.1.1 -c 3
+
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: seq=0 ttl=64 time=0.853 ms
+64 bytes from 192.168.1.1: seq=1 ttl=64 time=0.531 ms
+64 bytes from 192.168.1.1: seq=2 ttl=64 time=0.853 ms
+
+--- 192.168.1.1 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.531/0.745/0.853 ms
+
+LAN_ListRoute.listRoutes.ListRoutes.runTest: 2.554 0
