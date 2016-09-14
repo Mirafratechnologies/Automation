@@ -3,14 +3,8 @@ import subprocess
 import time
 import paramiko		# SSH Support
 import os
+import commonData
 
-user = "root"
-password = ""
-#user = "sunilpatlamane"
-#password = "sunilPsharma"
-ping = 120
-HOST = "192.168.1.232"
-port = 22
 cmd = ""
 
 class ListRoutes(unittest.TestCase):
@@ -19,12 +13,12 @@ class ListRoutes(unittest.TestCase):
 		global ssh
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-		ssh.connect(HOST, port, user, password)
-
+#		ssh.connect(HOST, port, user, password)
+		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
 	def tearDown(self):
 		t = time.time() - self.startTime
                 print "%s: %.3f %d" % (self.id(), t, self.status)
-                f = open("Result.txt", "a")
+                f = open(commonData.TestcaseResult, "a")
                 f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, self.id()))
                 f.close()
 		ssh.close()

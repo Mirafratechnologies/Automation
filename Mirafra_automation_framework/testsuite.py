@@ -5,21 +5,22 @@ import sys   # second test
 import os
 #from dummy import ConfigTestCase
 #import testcases
-
+import commonData
 import importlib
 
-if (not sys.argv[1:]):
+if (not sys.argv[2:]):
 	print "Missing : List of testcases file\n"
 	print "Usage:\n"
-	print sys.argv[0] + " <List_of_testcases>\n"
+	print sys.argv[0] + " <List_of_testcases> <TestcaseResult_file\n"
 	print "where List_of_testcases is a file having the testcases to be executed\n"
+	print "testcaseResult_file is a file to save the testcase results\n"
 	sys.exit(2)
 
 print str(sys.argv[1])
-
-if (os.path.isfile("Result.txt")):
-        os.remove("Result.txt")
-f = open("Result.txt", "w+")
+commonData.TestcaseResult = sys.argv[2]
+if (os.path.isfile(commonData.TestcaseResult)):
+        os.remove(commonData.TestcaseResult)
+f = open(commonData.TestcaseResult, "w+")
 f.write("Status(0-pass/1-fail) Execution_Time Testcase\n")
 f.close()
 

@@ -18,6 +18,6 @@ if [ -z "$3" ]
     exit
 fi
 
-export PYTHONPATH=$PYTHONPATH:/home/sunilpatlamane/Mirafra_automation_framework
+export PYTHONPATH=$PYTHONPATH:$PWD
 
 ./testsuite.py $1 $3 |& tee $2
