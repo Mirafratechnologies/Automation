@@ -42,7 +42,7 @@ class StartAP(unittest.TestCase):
                                 break
 
 			if 'uci get wireless.@wifi-iface[-1].ssid' in line:
-			    print("SSID of AP:" + resp)
+			    print("SSID of AP: " + resp)
 
 			if 'iwinfo wlan0 assoclist' in line:
 			    stdin,stdout,stderr=ssh.exec_command('cat /proc/net/arp')
@@ -57,6 +57,7 @@ class StartAP(unittest.TestCase):
 						    arp_ip=re.match(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',str)
 						    if arp_ip:
 					    	        print "IP address of connected station=",arp_ip.group(1)
+							print 'Ping to connected station...\n'
 						        cmd = "ping -c 5 " + arp_ip.group(1)
 						        stdin,stdout,stderr=ssh.exec_command(cmd)
 	                        		        outlines=stdout.readlines()
@@ -65,11 +66,27 @@ class StartAP(unittest.TestCase):
 						        self.status = stdout.channel.recv_exit_status()
 						        if self.status:
 						    	    print "Station %s got disconnected" % mac_addr.group(1)
-	                        		    
+			elif 'iwinfo' in line:
+			    print "AP statistics:"
+			    for str in resp.split('\n'):
+			        if 'Channel:' in str:
+			            print str
+			        if 'Tx-Power:' in str:
+			            print str
+			        if 'Signal:' in str:
+			            print str
+			        if 'Bit Rate:' in str:
+			            print str
+			        if 'Encryption:' in str:
+			            print str
+			        if 'Type:' in str:
+			            print str
+
 			if 'hostapd_cli status' in line:
 			    for str in resp.split('\n'):
 			    	stations=re.match(r'.*num_sta\[.*=(\d{0,})', str)
 			    	if stations:
 			    	    print "No. of connected stations=",stations.group(1)
+				    print "\n"
 			    
 		f.close()

@@ -6,4 +6,5 @@ uci set wireless.@wifi-iface[0].encryption=none
 uci commit wireless
 /etc/init.d/network reload
 ps -w | grep wpa_supplicant
+iwinfo
 wpa_cli status

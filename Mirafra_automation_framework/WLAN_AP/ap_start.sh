@@ -10,3 +10,4 @@ ps -w | grep hostapd
 uci get wireless.@wifi-iface[-1].ssid
 hostapd_cli status
 iwinfo wlan0 assoclist
+iwinfo

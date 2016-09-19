@@ -46,9 +46,11 @@ class StartStation(unittest.TestCase):
 			    for str in resp.split('\n'):
 				if 'bssid' in str:
 				    bssid=re.match(r'bssid=(([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2}))', str)
+				elif 'ssid' in str:
+				    ssid=re.match(r'ssid=(\w{0,})',str)
                                 if 'wpa_state' in str:
 				    if 'COMPLETED' in str:
-				        print "Station connected to AP with MAC address: ",bssid.group(1)
+				        print "Station connected to \"%s\" with MAC address: " % ssid.group(1),bssid.group(1)
 				    else:
                                         print "Could not connect to AP ",wpa_state
 					break
@@ -73,6 +75,23 @@ class StartStation(unittest.TestCase):
 				 	        if self.status:
 				                    print "Connection lost"
 						    break
+					    break
+				
+			if 'iwinfo' in line:
+			    print "Client statistics:"
+			    for str in resp.split('\n'):
+				    if 'Channel:' in str:
+				        print str
+				    if 'Tx-Power:' in str:
+				        print str
+				    if 'Signal:' in str:
+				        print str
+				    if 'Bit Rate:' in str:
+				        print str
+				    if 'Encryption:' in str:
+				        print str
+				    if 'Type:' in str:
+				        print str
 
 
 		f.close()
