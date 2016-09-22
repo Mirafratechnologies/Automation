@@ -21,7 +21,7 @@ class VerifyEth0(unittest.TestCase):
 		t = time.time() - self.startTime
                 print "%s: %.3f %d" % (self.id(), t, self.status)
                 f = open(commonData.TestcaseResult, "a")
-                f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, self.id()))
+                f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Verifyeth0"))
                 f.close()
 		ssh.close()
 
