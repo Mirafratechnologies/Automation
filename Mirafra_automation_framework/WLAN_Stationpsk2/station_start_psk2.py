@@ -5,7 +5,7 @@ import time
 import commonData
 import os
 
-class StartStation(unittest.TestCase):
+class StartStationpsk2(unittest.TestCase):
         def setUp(self):
 		global ssh
 		self.startTime = time.time()
@@ -23,7 +23,7 @@ class StartStation(unittest.TestCase):
 
 	def runTest(self):
 		cwd = os.getcwd()
-		run_script_path = cwd + "/WLAN_Station/station_start_open.sh"
+		run_script_path = cwd + "/WLAN_Stationpsk2/station_start_psk2.sh"
 		print run_script_path
 		f = open(run_script_path)
 		for line in f.readlines():
@@ -55,13 +55,13 @@ class StartStation(unittest.TestCase):
 				        if 'COMPLETED' in str:
 					    if completed is False:
 				                print "Station connected to \"%s\" with MAC address: " % ssid.group(1),bssid.group(1)
+						completed = True
 						time.sleep(3)
 					        stdin,stdout,stderr=ssh.exec_command('wpa_cli status')
 					        outlines=stdout.readlines()
 					        resp=''.join(outlines)
 					        self.status = stdout.channel.recv_exit_status()
                         		        self.assertEqual(stdout.channel.recv_exit_status(), 0, "Command execution failed")
-						completed = True
 						break
 					    else:
 					        i = 0
@@ -96,6 +96,9 @@ class StartStation(unittest.TestCase):
 				                stdin,stdout,stderr=ssh.exec_command('cat /proc/net/arp')
 				                outlines=stdout.readlines()
 				                arp=''.join(outlines)
+						self.status = stdout.channel.recv_exit_status()
+	                        		self.assertEqual(stdout.channel.recv_exit_status(), 0, "Command execution failed")
+
 				                for str in arp.split('\n'):
 					            if bssid.group(1) in str:
 							i = 0
@@ -121,10 +124,13 @@ class StartStation(unittest.TestCase):
 						else:
 						    i += 1
 						    if i is 10:
-	                                                print "Arp entry of AP IP is not updated. Trying with route\n"
+	                                                print "Arp entry of AP IP is not updated. Trying in route\n"
 							stdin,stdout,stderr=ssh.exec_command('route -n')
                                                 	outlines=stdout.readlines()
 	                                                route=''.join(outlines)
+							self.status = stdout.channel.recv_exit_status()
+	                        			self.assertEqual(stdout.channel.recv_exit_status(), 0, "Command execution failed")
+
 							for str in route.split('\n'):
 							    if 'wlan' in str:
 							        if '255.255.255.255' in str:

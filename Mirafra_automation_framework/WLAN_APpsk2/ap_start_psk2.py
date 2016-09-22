@@ -5,7 +5,7 @@ import time
 import commonData
 import os
 
-class StartAP(unittest.TestCase):
+class StartAPpsk2(unittest.TestCase):
         def setUp(self):
 		global ssh
 		self.startTime = time.time()
@@ -23,7 +23,7 @@ class StartAP(unittest.TestCase):
 
 	def runTest(self):
 		cwd = os.getcwd()
-		run_script_path = cwd + "/WLAN_AP/ap_start_open.sh"
+		run_script_path = cwd + "/WLAN_APpsk2/ap_start_psk2.sh"
 		print run_script_path
 		f = open(run_script_path)
                 for line in f.readlines():
