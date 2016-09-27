@@ -48,7 +48,7 @@ class CreateJsonFile(unittest.TestCase):
 		f.write("{\'reports\':[\n");
 		with open(commonData.TestcaseResult) as outfile:
 			for i in outfile.readlines():
-				a = i.split()
+				a = i.split(' ', 2)
 				print a[0]
 				print a[1]
 				print a[2]
