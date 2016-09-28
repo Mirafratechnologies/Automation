@@ -45,7 +45,7 @@ class CreateJsonFile(unittest.TestCase):
 	def runTest(self):
 		writeComma = 0
 		f = open(commonData.TestcaseResult + ".json", "w")
-		f.write("{\'reports\':[\n");
+		f.write("{\"reports\":[\n");
 		with open(commonData.TestcaseResult) as outfile:
 			for i in outfile.readlines():
 				a = i.split(' ', 2)
