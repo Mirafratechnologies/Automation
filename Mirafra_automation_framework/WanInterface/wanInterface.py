@@ -14,14 +14,20 @@ class WanInterface(unittest.TestCase):
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+                print "\nProgressStatus@ShowWANInterfaces@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
 		print "%s: %.3f %d" % (self.id(), t, self.status)
 		f = open(commonData.TestcaseResult, "a")
-		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Show Wan Interfaces"))
+		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "ShowWanInterfaces"))
 		f.close()
 		ssh.close()
+                if(self.status == 0):
+                        print "ProgressStatus@ShowWANInterfaces@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@ShowWANInterfaces@Completed@FAIL\n"
+
 
 	def runTest(self):
 		cwd = os.getcwd()

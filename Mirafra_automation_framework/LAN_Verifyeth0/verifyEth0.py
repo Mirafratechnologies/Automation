@@ -16,6 +16,7 @@ class VerifyEth0(unittest.TestCase):
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 #		ssh.connect(HOST, port, user, password)
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+                print "\nProgressStatus@Verifyeth0@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -24,6 +25,10 @@ class VerifyEth0(unittest.TestCase):
                 f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Verifyeth0"))
                 f.close()
 		ssh.close()
+                if(self.status == 0): 
+                        print "ProgressStatus@Verifyeth0@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@Verifyeth0@Completed@FAIL\n"
 
 	def runTest(self):
 		cwd = os.getcwd()

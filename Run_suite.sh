@@ -35,5 +35,5 @@ TESTSUITE_DIR="$ROOT_DIR/Mirafra_automation_framework"
 echo $TESTSUITE_DIR
 cd "$TESTSUITE_DIR"
 export PYTHONPATH=$PYTHONPATH:$PWD
-./testsuite.py "$TestList" "$ResultFile" |& tee "$LogFile"
+stdbuf -oL ./testsuite.py "$TestList" "$ResultFile" |& tee "$LogFile"
 cd -

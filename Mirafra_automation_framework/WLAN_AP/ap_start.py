@@ -12,6 +12,7 @@ class StartAP(unittest.TestCase):
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@Setup Open AP@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -20,6 +21,11 @@ class StartAP(unittest.TestCase):
 		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Setup Open Ap"))
 	 	f.close()
                 ssh.close()
+                if(self.status == 0): 
+                        print "ProgressStatus@Setup Open AP@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@Setup Open AP@Completed@FAIL\n"
+
 
 	def runTest(self):
 		cwd = os.getcwd()

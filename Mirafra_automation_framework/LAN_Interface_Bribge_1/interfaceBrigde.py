@@ -14,6 +14,7 @@ class InterfaceBridge(unittest.TestCase):
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@List LAN Interfaces@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -22,6 +23,11 @@ class InterfaceBridge(unittest.TestCase):
 		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "List LAN Interfaces"))
 		f.close()
 		ssh.close()
+                if(self.status == 0):
+                        print "ProgressStatus@List LAN Interfaces@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@List LAN Interfaces@Completed@FAIL\n"
+
 
 	def runTest(self):
 		cwd = os.getcwd()

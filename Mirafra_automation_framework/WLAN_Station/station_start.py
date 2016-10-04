@@ -12,6 +12,7 @@ class StartStation(unittest.TestCase):
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@Setup Open Station@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -20,6 +21,11 @@ class StartStation(unittest.TestCase):
 		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Setup Open Station"))
 		f.close()
                 ssh.close()
+                if(self.status == 0):
+                        print "ProgressStatus@Setup Open Station@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@Setup Open Station@Completed@FAIL\n"
+
 
 	def runTest(self):
 		cwd = os.getcwd()

@@ -15,6 +15,7 @@ class AddStaticRoute(unittest.TestCase):
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 #		ssh.connect(HOST, port, user, password)
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@AddStaticRoute@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -23,6 +24,10 @@ class AddStaticRoute(unittest.TestCase):
 		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "AddStaticRoute"))
                 f.close()
 		ssh.close()
+                if(self.status == 0):
+                        print "ProgressStatus@AddStaticRoute@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@AddStaticRoute@Completed@FAIL\n"
 
 	def runTest(self):
 		cwd = os.getcwd()

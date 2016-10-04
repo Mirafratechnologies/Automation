@@ -15,6 +15,7 @@ class ListRoutes(unittest.TestCase):
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 #		ssh.connect(HOST, port, user, password)
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@ListRoutes@Started\n"
 	def tearDown(self):
 		t = time.time() - self.startTime
                 print "%s: %.3f %d" % (self.id(), t, self.status)
@@ -22,6 +23,10 @@ class ListRoutes(unittest.TestCase):
                 f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "ListRoutes"))
                 f.close()
 		ssh.close()
+		if(self.status == 0):
+			print "ProgressStatus@ListRoutes@Completed@PASS\n"
+		else:
+			print "ProgressStatus@ListRoutes@Completed@FAIL\n"
 
 	def runTest(self):
 		cwd = os.getcwd()

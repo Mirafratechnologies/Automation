@@ -14,6 +14,7 @@ class InterfaceBridge2(unittest.TestCase):
 		ssh=paramiko.SSHClient()
 		ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		ssh.connect(commonData.Ipaddr, commonData.Port, commonData.User, commonData.Password)
+		print "\nProgressStatus@Change Subnet@Started\n"
 
 	def tearDown(self):
 		t = time.time() - self.startTime
@@ -22,6 +23,11 @@ class InterfaceBridge2(unittest.TestCase):
 		f.write("%d\t\t\t %.3f\t\t %s\n" % (self.status, t, "Change Subnet"))
 		f.close()
 		ssh.close()
+                if(self.status == 0): 
+                        print "ProgressStatus@Change Subnet@Completed@PASS\n"
+                else:
+                        print "ProgressStatus@Change Subnet@Completed@FAIL\n"
+
 
 	def runTest(self):
 		cwd = os.getcwd()
